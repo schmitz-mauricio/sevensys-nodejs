@@ -8,6 +8,7 @@
         "outDir": "./dist",
         "baseUrl": "./src",
         "allowJs": true,
+        "experimentalDecorators": true
     },
     "include": [
         "src/**/*.ts",

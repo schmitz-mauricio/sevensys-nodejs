@@ -5,8 +5,9 @@ export class testRoutes{
 
     public routes(app): void {
         app.route(this.path)
-        .get((req: Request, res: Response, next: NextFunction) => {
-            res.json({});
-        });
+            .get((req: Request, res: Response, next: NextFunction) => {
+                res.send({});
+                res.end()
+            });
     }
 }

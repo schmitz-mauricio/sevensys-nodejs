@@ -9,7 +9,7 @@ class Server {
     public app: express.Application;
     public PORT: Number;
 
-    constructor(port: Number, app: express.Application){
+    constructor(port: Number, app){
         this.app = app;
         this.PORT = port;
 

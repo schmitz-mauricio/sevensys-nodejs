@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "typescript",
+            "type": "npm",
+            "script": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "apidoc",
+            "type": "npm",
+            "script": "docs",
+            "problemMatcher": [],
+            "dependsOn": [
+                "typescript"
+            ]
+        }
+
+    ]
+  }
