@@ -62,7 +62,7 @@ typings/
 
 
 node_modules
-dist
+dist/*
 apidoc
 .DS_Store
 package-lock.json
