@@ -1,13 +1,14 @@
 import {Request, Response, NextFunction} from "express";
+import {Test} from '../models/Test';
 export class testRoutes{
 
     public path: String = '/test';
 
     public routes(app): void {
         app.route(this.path)
-            .get((req: Request, res: Response, next: NextFunction) => {
-                res.send({});
-                res.end()
+            .post(async(req: Request, res: Response, next: NextFunction) => {
+                const test = await Test.create(req.body);
+                res.json(test);
             });
     }
 }

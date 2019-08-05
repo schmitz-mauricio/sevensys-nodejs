@@ -19,11 +19,15 @@
   "homepage": "https://github.com/schmitz-mauricio/sevensys-nodejs#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.0.0",
+    "helmet": "^3.20.0",
     "http": "0.0.0",
+    "mysql2": "^1.6.5",
+    "reflect-metadata": "^0.1.13",
     "sequelize": "^5.12.2",
     "sequelize-typescript": "^1.0.0-beta.3",
     "typescript": "^3.5.3"
