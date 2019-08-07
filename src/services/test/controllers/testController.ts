@@ -1,18 +1,14 @@
 import { Request, Response } from 'express';
 import {Test} from '../models/Test';
 
-//const func = require('../../../helpers/functions');
-//const logger = require('../../../helpers/logger');
-
 export class TestController{
     
     public async index(req: Request, res: Response){
         try {
             const result = await Test.findAndCountAll();
-            //const test = await Test.create(req.body);
             return res.status(200).json(result);
         } catch (e) {
-            return res.status(400).json({message: "Ops... Ocorreu um erro!"});
+            return res.status(400).json({message: "Ops... Ocorreu um erro!", error: e.message});
         }
     }
 
@@ -24,7 +20,7 @@ export class TestController{
             }
             return res.status(200).json(test);
         } catch (e) {
-            return res.status(400).json({message: "Ops... Ocorreu um erro!"});
+            return res.status(400).json({message: "Ops... Ocorreu um erro!", error: e.message});
         }
     }
 
@@ -33,7 +29,7 @@ export class TestController{
             const test = await Test.create(req.body);
             return res.status(201).json(test);
         } catch (e) {
-            return res.status(400).json({message: "Ops... Ocorreu um erro!"});
+            return res.status(400).json({message: "Ops... Ocorreu um erro!", error: e.message});
         }
     }
 
@@ -46,7 +42,7 @@ export class TestController{
             const result = await test.update(req.body);
             return res.status(200).json(result);
         } catch (e) {
-            return res.status(400).json({message: "Ops... Ocorreu um erro!"});
+            return res.status(400).json({message: "Ops... Ocorreu um erro!", error: e.message});
         }
     }
 
@@ -63,7 +59,7 @@ export class TestController{
             });
             return res.status(200).json({ message: result == 1 ? "Registro removido com sucesso" : "Ops... Ocorreu um erro!"});
         } catch (e) {
-            return res.status(400).json({message: "Ops... Ocorreu um erro!"});
+            return res.status(400).json({message: "Ops... Ocorreu um erro!", error: e.message});
         }
     }
 }

@@ -5,7 +5,7 @@ dotenv.config();
 import app from './app';
 import Server from "../../server.class";
 
-const PORT: Number | any = process.env.TEST_PORT || 3001;
+const PORT: Number | any = process.env.USER_PORT || 3003;
 
 
 (async () => {

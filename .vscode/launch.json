@@ -5,9 +5,45 @@
     {
         "type": "node",
         "request": "launch",
+        "name": "GATEWAY-API",
+        "preLaunchTask": "typescript",
+        "program": "${workspaceFolder}/dist/gateway/index.js",
+        "cwd": "${workspaceFolder}",
+        "protocol": "inspector",
+        "outFiles": [
+            "${workspaceFolder}/dist/**/*.js"
+        ]
+    },
+    {
+        "type": "node",
+        "request": "launch",
         "name": "TEST-API",
         "preLaunchTask": "typescript",
         "program": "${workspaceFolder}/dist/services/test/index.js",
+        "cwd": "${workspaceFolder}",
+        "protocol": "inspector",
+        "outFiles": [
+            "${workspaceFolder}/dist/**/*.js"
+        ]
+    },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "PRODUCT-API",
+        "preLaunchTask": "typescript",
+        "program": "${workspaceFolder}/dist/services/product/index.js",
+        "cwd": "${workspaceFolder}",
+        "protocol": "inspector",
+        "outFiles": [
+            "${workspaceFolder}/dist/**/*.js"
+        ]
+    },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "USER-API",
+        "preLaunchTask": "typescript",
+        "program": "${workspaceFolder}/dist/services/user/index.js",
         "cwd": "${workspaceFolder}",
         "protocol": "inspector",
         "outFiles": [
