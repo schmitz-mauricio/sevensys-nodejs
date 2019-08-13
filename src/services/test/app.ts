@@ -12,4 +12,4 @@ class App extends AppClass {
     }
 }
 
-export default new App(routes);
+export default new App(routes).app;

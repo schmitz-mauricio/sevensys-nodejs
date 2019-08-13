@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+          "type": "node",
+          "request": "launch",
+          "name": "TEST-API",
+          "preLaunchTask": "typescript",
+          "program": "${workspaceFolder}/dist/services/test/index.js",
+          "cwd": "${workspaceFolder}",
+          "protocol": "inspector",
+          "outFiles": [
+              "${workspaceFolder}/dist/**/*.js"
+          ]
+      }
+    ]
+  }
