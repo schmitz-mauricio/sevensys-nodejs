@@ -12,6 +12,18 @@
           "outFiles": [
               "${workspaceFolder}/dist/**/*.js"
           ]
+      },
+      {
+          "type": "node",
+          "request": "launch",
+          "name": "PRODUCT-API",
+          "preLaunchTask": "typescript",
+          "program": "${workspaceFolder}/dist/services/product/index.js",
+          "cwd": "${workspaceFolder}",
+          "protocol": "inspector",
+          "outFiles": [
+              "${workspaceFolder}/dist/**/*.js"
+          ]
       }
     ]
   }

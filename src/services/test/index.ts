@@ -4,7 +4,7 @@ import {sequelize} from './config/mysql';
 
 import app from "./app";
 
-const PORT: Number | any = process.env.TEST_PORT || 3000;
+const PORT: Number | any = process.env.TEST_PORT || 3001;
 
 (async () => {
     await sequelize.sync({force: false});
