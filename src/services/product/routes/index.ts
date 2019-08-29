@@ -2,6 +2,7 @@ import {Request, Response, NextFunction} from "express";
 import {ProductController} from "../controllers/productController";
 import {CategoryController} from "../controllers/categoryController";
 
+const auth = require('../../../middlewares/auth');
 export class testRoutes{
 
     public path: String = '/product';
@@ -48,7 +49,7 @@ export class testRoutes{
         app.route(this.path)
             .get(async(req: Request, res: Response, next: NextFunction) => {
                 next();  
-            }, this.productController.index.bind(this.productController))
+            }, auth.verifyJWT, this.productController.index.bind(this.productController))
 
             .post(async(req: Request, res: Response, next: NextFunction) => {
                 next();  

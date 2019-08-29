@@ -1,4 +1,4 @@
-import {Model, Column, Table, Scopes, CreatedAt, UpdatedAt, DataType, AllowNull, ForeignKey, BelongsTo} from "sequelize-typescript";
+import {Model, Column, Table, Scopes, CreatedAt, UpdatedAt, DataType, AllowNull, ForeignKey, BelongsTo, Default} from "sequelize-typescript";
 import { DecimalDataType } from "sequelize/types";
 import {Category} from "./Category";
 
@@ -28,6 +28,10 @@ export class Product extends Model<Product> {
     @BelongsTo(() => Category)
     public category: Category;
     
+    @Column
+    @Default(0)
+    stock!: number;
+
     @CreatedAt
     @Column
     createdAt!: Date;

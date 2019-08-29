@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "nodejs",
+    "password": "sevensys",
+    "database": "mauricio",
+    "host": "mysql-nodejs.mauricioschmitz.com.br",
+    "port": 3307,
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "nodejs",
+    "password": "sevensys",
+    "database": "mauricio",
+    "host": "mysql-nodejs.mauricioschmitz.com.br",
+    "port": 3307,
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "nodejs",
+    "password": "sevensys",
+    "database": "mauricio",
+    "host": "mysql-nodejs.mauricioschmitz.com.br",
+    "port": 3307,
+    "dialect": "mysql"
+  }
+}

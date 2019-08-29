@@ -14,6 +14,7 @@ dotenv.config();
 const testServiceProxy = httpProxy(`http://localhost:${process.env.TEST_PORT || 3001}`);
 const productServiceProxy = httpProxy(`http://localhost:${process.env.PRODUCT_PORT || 3002}`);
 const userServiceProxy = httpProxy(`http://localhost:${process.env.USER_PORT || 3003}`);
+const stockServiceProxy = httpProxy(`http://localhost:${process.env.STOCK_PORT || 3004}`);
 
 
 app.all(['/test', '/test/*'], auth.verifyJWT, (req: Request, res: Response, next: NextFunction) => {
@@ -29,6 +30,11 @@ app.all('/user/login', basicAuth({authorizer: basicAuthMiddleware.defaultAuth, a
 
 app.all(['/user', /^\/user\/(?!login).*$/],  auth.verifyJWT, (req: Request, res: Response, next: NextFunction) => {
     userServiceProxy(req, res, next);
+});
+
+
+app.all(['/stock', '/stock/*'], auth.verifyJWT, (req: Request, res: Response, next: NextFunction) => {
+    stockServiceProxy(req, res, next);
 });
 
 const server = http.createServer(app);
