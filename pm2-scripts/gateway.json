@@ -1,0 +1,14 @@
+{
+    "apps": [
+      {
+        "name": "GATEWAY-API",
+        "script": "dist/gateway/index.js",
+        "watch": false,
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "node_args": [
+        ],
+        "instances" : "max",
+        "exec_mode" : "cluster"
+      }
+    ]
+}

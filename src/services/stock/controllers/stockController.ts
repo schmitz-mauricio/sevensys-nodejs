@@ -1,16 +1,15 @@
 import { Request, Response } from 'express';
 import * as mongoose from 'mongoose';
 import * as _ from "lodash";
+import { ProductApiRequester } from "../../../requesters/productApiRequester";
 
 import { StockSchema } from '../schemas/StockSchema';
-//import {ProductApiRequester} from "../../../requesters/productApiRequester";
-
 
 const Stock = mongoose.model('Stock', StockSchema);
 
 export class StockController{
     
-    //public productApiRequester: ProductApiRequester = new ProductApiRequester();
+    public productApiRequester: ProductApiRequester = new ProductApiRequester();
 
     public async index(req: Request, res: Response){
         try {
@@ -68,10 +67,10 @@ export class StockController{
         }
     }
 
-    public async processJob(){
+    public async processJob(type: String = 'IN'){
         try{
             // get PENDING LIST
-            Stock.find({status: "PENDING"})
+            Stock.find({status: "PENDING", type})
                  .sort({created_date: 1})
                  .limit(10)
                  .exec(async(err, stocks) => {
@@ -84,10 +83,29 @@ export class StockController{
                             _id: {$in : _.map(stocks, '_id')}
                            
                         },{
-                            $set: {status: "PROCESSED"}
+                            $set: {status: "PROCESSING"}
                         })
 
-                        return resUpdate;
+                        if(resUpdate.nModified < stocks.length) {
+                            throw new Error("Não foi possível processar os registros");
+                        }
+                        
+                        for(let stock of stocks) {
+                            const stockRequest:any = await this.productApiRequester.stock(
+                                stock.product,
+                                stock.type,
+                                stock.quantity
+                            );
+
+                            if(stockRequest.result) {
+                                stock.status = 'PROCESSED';
+                            } else {
+                                stock.status = 'ERROR';
+                            }
+                            stock.result = stockRequest.message;
+
+                            await stock.save();
+                        }
                     }
                  });
 

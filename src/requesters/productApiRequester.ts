@@ -1,5 +1,5 @@
 import * as request from "request";
-import {UserApiRequester} from "./useApiRequester";
+import {UserApiRequester} from "./userApiRequester";
 
 export class ProductApiRequester{
     public useApiRequester: UserApiRequester = new UserApiRequester();
@@ -8,7 +8,7 @@ export class ProductApiRequester{
         const body = { type, quantity };
 
         return new Promise(async (resolve, reject) => {
-            const sUri = `http://localhost:${process.env.PRODUCT_PORT || 3002}/product/stock/${product}`;
+            const sUri = `http://localhost:${process.env.GATEWAY_PORT || 3000}/product/stock/${product}`;
         
             try {
                 const requestAuth:any = await this.useApiRequester.login('mauricio', '123123');

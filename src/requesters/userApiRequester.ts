@@ -6,7 +6,7 @@ export class UserApiRequester{
         const body = { login, password };
 
         return new Promise(async (resolve, reject) => {
-            const sUri = `http://localhost:${process.env.USER_PORT || 3003}/user/login`;
+            const sUri = `http://localhost:${process.env.GATEWAY_PORT || 3000}/user/login`;
         
             request.post({
                 url: sUri,

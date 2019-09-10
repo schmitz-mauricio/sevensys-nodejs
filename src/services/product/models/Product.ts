@@ -29,7 +29,6 @@ export class Product extends Model<Product> {
     public category: Category;
     
     @Column
-    @Default(0)
     stock!: number;
 
     @CreatedAt

@@ -1,0 +1,12 @@
+{
+    "apps": [
+      {
+        "name": "STOCK-API",
+        "script": "dist/services/stock/index.js",
+        "watch": false,
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "node_args": [
+        ]
+      }
+    ]
+}

@@ -64,4 +64,25 @@ export class ProductController{
             return res.status(400).json({message: "Ops... Ocorreu um erro!", error: e.message});
         }
     }
+
+    public async stock(req: Request, res: Response) {
+        try {
+
+            const product = await Product.findByPk(req.params.id);
+            if(product) {
+                if(req.body.type == "IN") 
+                    product.stock = product.stock + req.body.quantity;
+                else 
+                    product.stock = product.stock - req.body.quantity;
+
+                await product.save();
+
+                return res.json({result: true, message: 'Estoque atualizado', error: false});
+            } else {
+                return res.json({result: false, message: 'Produto não encontrado', error: 'Produto não encontrado'});
+            }
+        } catch (e) {
+            return res.status(400).json({result: false, message: "Ops... Ocorreu um erro!", error: e.message});
+        }
+    }
 }
