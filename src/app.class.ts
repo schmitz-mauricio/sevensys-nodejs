@@ -47,10 +47,7 @@ class App {
         
         // enable CORS - Cross Origin Resource Sharing
         this.app.use(cors());
-        // Apidoc
-        this.app.use(`${this.routes.path}/apidoc`, express.static('dist/apidoc'));
-        this.app.use(`${this.routes.path}/`, express.static('public'));
-
+        
         // Load Routes
         this.routes.routes(this.app);   
         // Add error formating 

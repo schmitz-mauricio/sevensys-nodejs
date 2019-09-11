@@ -22,7 +22,7 @@ export class UserController{
                 return res.status(403).json({message: "Usuário ou senha inválidos!"});    
             }
             var token = jwt.sign({ id: user.id }, process.env.SECRET, {
-                expiresIn: 300 // expires in 5min
+                expiresIn: (60*60) * 8// 8 horas
             });
             return res.status(200).send({ auth: true, token: token });
         } catch (e) {

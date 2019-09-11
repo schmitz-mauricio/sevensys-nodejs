@@ -1,10 +1,18 @@
 import { Request, Response } from 'express';
 import {Category} from '../models/Category';
+import { sequelize } from '../config/mysql';
 
 export class CategoryController{
     
     public async index(req: Request, res: Response){
         try {
+            const data = await sequelize.query('SELECT * FROM Categories',{
+                model: sequelize.models.Category,
+                mapToModel: true 
+                //replacements: [this.user.id],
+                //model: sequelize.models.MyModel // <-- This works for me.
+            });
+            console.log(data);
             const result = await Category.findAndCountAll();
             return res.status(200).json(result);
         } catch (e) {

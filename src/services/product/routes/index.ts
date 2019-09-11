@@ -54,7 +54,11 @@ export class testRoutes{
                 next();  
             }, this.productController.save.bind(this.productController));
 
-
+        // Stock
+        app.route(`${this.path}/stock/:id`)
+            .put(async(req: Request, res: Response, next: NextFunction) => {
+                next();  
+            }, this.productController.stock.bind(this.productController))
 
 
 

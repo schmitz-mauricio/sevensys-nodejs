@@ -19,6 +19,9 @@ export class Product extends Model<Product> {
     @AllowNull(false)
     @Column({ type: DataType.DECIMAL(10, 2) })
     value!: DecimalDataType;
+    
+    @Column
+    stock!: number;
 
     @AllowNull(false)
     @ForeignKey(() => Category)

@@ -49,6 +49,30 @@
         "outFiles": [
             "${workspaceFolder}/dist/**/*.js"
         ]
+    },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "STOCK-API",
+        "preLaunchTask": "typescript",
+        "program": "${workspaceFolder}/dist/services/stock/index.js",
+        "cwd": "${workspaceFolder}",
+        "protocol": "inspector",
+        "outFiles": [
+            "${workspaceFolder}/dist/**/*.js"
+        ]
+    },
+    {
+        "type": "node",
+        "request": "launch",
+        "name": "ORDER-API",
+        "preLaunchTask": "typescript",
+        "program": "${workspaceFolder}/dist/services/order/index.js",
+        "cwd": "${workspaceFolder}",
+        "protocol": "inspector",
+        "outFiles": [
+            "${workspaceFolder}/dist/**/*.js"
+        ]
     }
   ]
 }
