@@ -40,7 +40,11 @@ app.all(['/stock', '/stock/*'], auth.verifyJWT, (req: Request, res: Response, ne
     stockServiceProxy(req, res, next);
 });
 
-app.all(['/order', '/order/*'], auth.verifyJWT, (req: Request, res: Response, next: NextFunction) => {
+app.all('/order/pagarme', basicAuth({authorizer: basicAuthMiddleware.defaultAuth, authorizeAsync: true}), (req: Request, res: Response, next: NextFunction) => {
+    orderServiceProxy(req, res, next);
+});
+
+app.all(['/order',/^\/order\/(?!pagarme).*$/], auth.verifyJWT, (req, res, next) => {
     orderServiceProxy(req, res, next);
 });
 

@@ -6,6 +6,11 @@ export class orderRoutes{
     public path: String = '/order';
     public orderController: OrderController = new OrderController();
     public routes(app): void {
+        app.route(`${this.path}/pagarme`)
+            .post(async(req: Request, res: Response, next: NextFunction) => {
+                next();  
+            }, this.orderController.postback.bind(this.orderController))
+            
         app.route(`${this.path}`)
             .get(async(req: Request, res: Response, next: NextFunction) => {
                 next();  
@@ -18,5 +23,9 @@ export class orderRoutes{
             .delete(async(req: Request, res: Response, next: NextFunction) => {
                 next();  
             }, this.orderController.delete.bind(this.orderController));
+
+        
+
+            
     }
 }

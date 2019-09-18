@@ -1,10 +1,12 @@
-import { Request, Response } from 'express';
+import { Request, Response, request } from 'express';
 import {Customer} from "../structure/customer";
+import {Pagarme} from "../structure/pagarme";
 
 import * as _ from "lodash";
 const mongodb = require('../../../helpers/mongodb');
 export class OrderController{
     public customer: Customer = new Customer();
+    public pagarme: Pagarme = new Pagarme();
 
     public async index(req: Request, res: Response){
         try {
@@ -54,12 +56,20 @@ export class OrderController{
 
                     const customerId = await this.customer.save(order.customer);
 
-                    order.customer.external_id = customerId;
+                    order.customer.external_id = customerId.toString();
 
+                    const resUpdateCustomerId = await mongodb.updateManySet('order', {
+                        _id: order._id
+                    }, {
+                        $set: {"customer.external_id": customerId}
+                    })
+
+                    const pagarme = await this.pagarme.transaction(order);
+                    
                     const resUpdate = await mongodb.updateManySet('order', {
                         _id: order._id
                     }, {
-                        $set: {status: "PROCESSED", "customer.external_id": customerId}
+                        $set: {status: "PROCESSED", pagarme}
                     })
                 }
             }
@@ -67,5 +77,9 @@ export class OrderController{
         } catch (e) {
             return false
         }
+    }
+
+    public async postback(req: Request, res:Response){
+        res.json({})
     }
 }
