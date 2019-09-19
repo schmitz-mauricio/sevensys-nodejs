@@ -13,7 +13,7 @@ export class OrderController{
         try {
             const list = await mongodb.find('order', req.query);
 
-            logger.log('Mauricio->', 'Teste');
+            logger.log('Mauricio->', list);
             return res.json(list);
         } catch (e) {
             return res.status(400).json({message: "Ops... Ocorreu um erro!", error: e.message});
