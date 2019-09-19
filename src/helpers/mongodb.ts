@@ -86,10 +86,15 @@ function deleteMany(collection, dados) {
     });
 }
 
+function genObjectId(id){
+    return ObjectId(id);
+}
+
 module.exports = {
     connect,
     find,
     save,
     updateManySet,
-    deleteMany
+    deleteMany,
+    genObjectId
 }

@@ -4,6 +4,7 @@ import {Pagarme} from "../structure/pagarme";
 
 import * as _ from "lodash";
 const mongodb = require('../../../helpers/mongodb');
+const logger = require('../../../helpers/logger');
 export class OrderController{
     public customer: Customer = new Customer();
     public pagarme: Pagarme = new Pagarme();
@@ -12,6 +13,7 @@ export class OrderController{
         try {
             const list = await mongodb.find('order', req.query);
 
+            logger.log('Mauricio->', 'Teste');
             return res.json(list);
         } catch (e) {
             return res.status(400).json({message: "Ops... Ocorreu um erro!", error: e.message});
@@ -80,6 +82,25 @@ export class OrderController{
     }
 
     public async postback(req: Request, res:Response){
-        res.json({})
+        try{
+            const list = await mongodb.find('order', {_id: mongodb.genObjectId(req.query.id)});
+            if(list.length){
+                const order = list[0];
+                if(!order.pagarme){
+                    order.pagarme = {};
+                }
+                if(!order.pagarme.postbacks){
+                    order.pagarme.postbacks = [];
+                }
+        
+                order.pagarme.postbacks.push(req.body);
+        
+                const result = await mongodb.updateManySet('order', {_id: order._id}, {$set: {"pagarme.postbacks": order.pagarme.postbacks}});
+            }
+            res.json({})
+        } catch(e){
+            res.status(400).json({});
+        }
+        
     }
 }
