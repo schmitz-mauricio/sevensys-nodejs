@@ -71,6 +71,18 @@
           "outFiles": [
               "${workspaceFolder}/dist/**/*.js"
           ]
+      },
+      {
+          "type": "node",
+          "request": "launch",
+          "name": "REPORT-API",
+          "preLaunchTask": "typescript",
+          "program": "${workspaceFolder}/dist/services/report/index.js",
+          "cwd": "${workspaceFolder}",
+          "protocol": "inspector",
+          "outFiles": [
+              "${workspaceFolder}/dist/**/*.js"
+          ]
       }
     ]
   }
